@@ -34,7 +34,7 @@ $(document).on("click", "h1", function () {
     $(".view-notes").append("<h2>" + data.title + "</h2>");
     $(".save-notes").append("<input id='titleinput' name='title' >");
     $(".save-notes").append("<textarea id='bodyinput' name='body'></textarea>");
-    $(".save-notes").append("<button data-id='" + data._id + " ' id='savenote'>Save Note</button>");
+    $(".save-notes").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
 
     // data.forEach(dataItem => {
       if (data.note.length > 0) {

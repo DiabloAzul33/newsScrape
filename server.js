@@ -10,6 +10,8 @@ var axios = require("axios");
 // Set Handlebars.
 var exphbs = require("express-handlebars");
 
+var PORT = process.env.PORT || 8000;
+
 const app = express();
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoScraper";
 
@@ -148,6 +150,6 @@ app.put("/api/bookmarked", function(req, res) {
       res.json(err);
     });
 });
-app.listen(8000, function() {
-    console.log("App is listening on Port 8000");
+app.listen(PORT, function() {
+    console.log("App is listening on " + PORT);
 });
