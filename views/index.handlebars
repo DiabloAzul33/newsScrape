@@ -1,4 +1,15 @@
+<div class="row">
+
+<div class="col-md-8">
 {{#each posts}}
-<h1>{{this.title}}</h1>
+<h1 class="title" data-id="{{this._id}}">{{this.title}}</h1>
+<br>
+<a href="https://www.reddit.com/{{this.link}}">Read More</a>
 <button class="bookmark-btn" data-id="{{this._id}}">Bookmark Post</button>
 {{/each}}
+</div>
+<div class="col-md-4 medium-box">
+    <div class="view-notes" style="border: 2px solid black;"></div>
+    <div class="save-notes"></div>
+</div>
+</div>

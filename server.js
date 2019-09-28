@@ -1,3 +1,5 @@
+const Note = require("./models/Notes");
+
 const express = require("express");
 
 const mongoose = require("mongoose");
@@ -75,6 +77,7 @@ for (var i = 0; i < results.length; i++) {
 
 }
 });
+res.redirect("/");
 });
 app.get("/api/posts", function(req,res) {
     Post.find({}, function(err, data) {
@@ -113,6 +116,25 @@ app.get("/bookmarked", function(req, res) {
         res.render("index", {posts : data});
       }
     });
+});
+
+app.get("/api/posts/:id", function(req, res) {
+  Post.findOne({ _id: req.params.id })
+  .populate("note")
+  .then(function(dbPost) {
+    res.json(dbPost);
+  })
+  .catch(function(err) {
+    res.json(err);
+  });
+});
+
+app.post("/api/posts/:id", function(req, res) {
+  Note.create(req.body)
+  .then(function(dbNote) {
+    console.log(dbNote);
+    return Post.findOneAndUpdate({ _id: req.params.id }, {$push: { note: dbNote._id }}, { new: true, upsert: true });
+  })
 });
 
 app.put("/api/bookmarked", function(req, res) {
